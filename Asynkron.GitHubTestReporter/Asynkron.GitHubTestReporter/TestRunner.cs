@@ -10,13 +10,13 @@ using OpenTelemetry.Trace;
 
 namespace Asynkron.GitHubTestReporter;
 
-public class OtelTestRunner
+public class TestRunner
 {
-    public OtelTestRunner(ReportSettings settings)
+    public TestRunner(ReportSettings settings)
     {
         InitOpenTelemetry(settings);
     }
-    private const string ActivitySourceName = "Proto.Cluster.Tests";
+    private const string ActivitySourceName = "TestRunner";
     private static readonly ActivitySource ActivitySource = new(ActivitySourceName);
     private static readonly object Lock = new();
     private static ILogger? _logger;
@@ -87,7 +87,7 @@ public class OtelTestRunner
             var serviceProvider = services.BuildServiceProvider();
 
             _loggerFactory = serviceProvider.GetRequiredService<ILoggerFactory>();
-            _logger = _loggerFactory.CreateLogger<OtelTestRunner>();
+            _logger = _loggerFactory.CreateLogger<TestRunner>();
             _tracerProvider = Sdk.CreateTracerProviderBuilder()
                 .SetResourceBuilder(builder.AddService("Proto.Cluster.Tests"))
                 .AddSource(ActivitySourceName)
