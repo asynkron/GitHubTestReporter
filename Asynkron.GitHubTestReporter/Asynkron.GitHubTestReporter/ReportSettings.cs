@@ -1,8 +1,8 @@
 namespace Asynkron.GitHubTestReporter;
 
-public static class ReportSettings
+public class ReportSettings
 {
-    public static bool EnableTracing;
-    public static string? OpenTelemetryUrl;
-    public static string? TraceViewUrl;
+    public bool EnableTracing;
+    public string? OpenTelemetryUrl;
+    public string? TraceViewUrl;
 }
